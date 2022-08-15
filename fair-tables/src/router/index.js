@@ -1,0 +1,27 @@
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import TablesView from '../views/TablesView.vue'
+import PastSections from '../views/PastSections.vue'
+
+Vue.use(VueRouter)
+
+const routes = [
+  {
+    path: '/',
+    name: 'tables-view',
+    component: TablesView,
+  },
+  {
+    path: '/past-sections',
+    names: 'past-sections',
+    component: PastSections,
+  },
+]
+
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes,
+})
+
+export default router

@@ -5,7 +5,11 @@
       <router-link to="/past-sections">Past Sections</router-link>
     </nav>
     <router-view />
-    <img id="sushi-logo" src="./assets/sushi-sake-logo.png" alt="ghhghg" />
+    <img
+      id="sushi-logo"
+      src="./assets/sushi-sake-logo.png"
+      alt="sushi sake logo"
+    />
   </div>
 </template>
 
@@ -28,12 +32,13 @@ body {
   text-align: center;
   overflow-y: auto;
   overflow-x: none;
+  height: 100vh;
 }
 #sushi-logo {
   width: 9em;
   position: absolute;
   left: 3%;
-  top: 20%;
+  top: 5vh;
 }
 
 nav {
@@ -43,7 +48,7 @@ nav {
   padding: 1em;
   position: absolute;
   right: 2%;
-  top: 10%;
+  top: 2vh;
 }
 
 nav a {

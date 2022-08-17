@@ -12,7 +12,75 @@
       <p>Reset Shift</p>
     </div>
     <!----------------------------------TABLES 20-80------------------------------------------>
-    <div id="inside"></div>
+    <div id="inside">
+      <TableEl id="table-20" class="tables"
+        ><span class="table-num">20</span></TableEl
+      >
+      <TableEl id="table-21" class="tables"
+        ><span class="table-num">21</span></TableEl
+      >
+      <TableEl id="table-22" class="tables"
+        ><span class="table-num">22</span></TableEl
+      >
+      <TableEl id="table-23" class="tables"
+        ><span class="table-num">23</span></TableEl
+      >
+      <TableEl id="table-30" class="tables"
+        ><span class="table-num">30</span></TableEl
+      >
+      <TableEl id="table-31" class="tables"
+        ><span class="table-num">31</span></TableEl
+      >
+      <TableEl id="table-32" class="tables"
+        ><span class="table-num">32</span></TableEl
+      >
+      <TableEl id="table-33" class="tables"
+        ><span class="table-num">33</span></TableEl
+      >
+      <TableEl id="table-40" class="tables"
+        ><span class="table-num">40</span></TableEl
+      >
+      <TableEl id="table-41" class="tables"
+        ><span class="table-num">41</span></TableEl
+      >
+      <TableEl id="table-42" class="tables"
+        ><span class="table-num">42</span></TableEl
+      >
+      <TableEl id="table-50" class="tables"
+        ><span class="table-num">50</span></TableEl
+      >
+      <TableEl id="table-51" class="tables"
+        ><span class="table-num">51</span></TableEl
+      >
+      <TableEl id="table-52" class="tables"
+        ><span class="table-num">52</span></TableEl
+      >
+      <TableEl id="table-53" class="tables"
+        ><span class="table-num">53</span></TableEl
+      >
+      <TableEl id="table-60" class="tables"
+        ><span class="table-num">60</span></TableEl
+      >
+      <TableEl id="table-61" class="tables"
+        ><span class="table-num">61</span></TableEl
+      >
+      <TableEl id="table-70" class="tables"
+        ><span class="table-num">70</span></TableEl
+      >
+      <TableEl id="table-71" class="tables"
+        ><span class="table-num">71</span></TableEl
+      >
+      <TableEl id="table-80" class="tables"
+        ><span class="table-num">80</span></TableEl
+      >
+      <SectionLetters id="c">C</SectionLetters>
+      <SectionLetters id="d">D</SectionLetters>
+      <SectionLetters id="e">E</SectionLetters>
+      <SectionLetters id="f">F</SectionLetters>
+      <!--------------------------------Hostess/Parties------------------------------------->
+      <div id="hostess">Hostess</div>
+      <UpcomingParties id="upcoming-parties" />
+    </div>
     <!----------------------------------TABLES 1-16------------------------------------------->
     <TableEl id="table-1" class="tables"
       ><span class="table-num">1</span></TableEl
@@ -53,13 +121,28 @@
     <TableEl id="table-13" class="tables"
       ><span class="table-num">13</span></TableEl
     >
+    <TableEl id="table-14" class="tables"
+      ><span class="table-num">14</span></TableEl
+    >
+    <TableEl id="table-15" class="tables"
+      ><span class="table-num">15</span></TableEl
+    >
+    <TableEl id="table-16" class="tables"
+      ><span class="table-num">16</span></TableEl
+    >
+    <SectionLetters id="a">A</SectionLetters>
+    <SectionLetters id="b">B</SectionLetters>
   </div>
 </template>
 
 <script>
 import ServersHeadCount from '@/components/ServersHeadCount.vue'
 import TableEl from '@/components/TableEl.vue'
-export default { components: { ServersHeadCount, TableEl } }
+import UpcomingParties from '@/components/UpcomingParties.vue'
+import SectionLetters from '@/components/SectionLetters.vue'
+export default {
+  components: { ServersHeadCount, TableEl, UpcomingParties, SectionLetters },
+}
 </script>
 
 <style lang="css" scoped>
@@ -81,7 +164,7 @@ h4 {
   height: 60vh;
   width: 20vw;
   position: absolute;
-  top: 25vh;
+  top: 28vh;
   right: 1vw;
   overflow-y: auto;
 }
@@ -93,6 +176,8 @@ h4 {
   cursor: pointer;
   margin-right: 40px;
   margin-top: 3px;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
 }
 #add-server:active {
   background: rgba(224, 219, 219, 0.3);
@@ -120,7 +205,7 @@ h4 {
   z-index: 1;
   position: absolute;
   left: 90vw;
-  top: 88vh;
+  top: 89vh;
   font-size: 10px;
 }
 .reset {
@@ -128,6 +213,8 @@ h4 {
   padding: 0.6em 0.6em 0.6em 0.7em;
   border-radius: 6px;
   cursor: pointer;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
 }
 .reset:active {
   background: rgb(243, 34, 34, 0.3);
@@ -209,6 +296,188 @@ h4 {
   top: 16vh;
   left: 12vw;
   text-align: right;
+}
+#table-14 {
+  position: absolute;
+  top: 3vh;
+  left: 23vw;
+  text-align: right;
+}
+#table-15 {
+  position: absolute;
+  top: 3vh;
+  left: 33vw;
+  text-align: right;
+}
+#table-16 {
+  position: absolute;
+  top: 3vh;
+  left: 43vw;
+  text-align: right;
+}
+/*----------------------TABLES 20-80-----------------------------*/
+#table-20 {
+  position: absolute;
+  top: 73vh;
+  left: 2vw;
+  text-align: right;
+}
+#table-21 {
+  position: absolute;
+  top: 28vh;
+  left: 2vw;
+  text-align: right;
+}
+#table-22 {
+  position: absolute;
+  top: 15vh;
+  left: 2vw;
+  text-align: right;
+}
+#table-23 {
+  position: absolute;
+  top: 2vh;
+  left: 2vw;
+  text-align: right;
+}
+#table-30 {
+  position: absolute;
+  top: 73vh;
+  left: 10vw;
+  text-align: right;
+}
+#table-31 {
+  position: absolute;
+  top: 28vh;
+  left: 10vw;
+  text-align: right;
+}
+#table-32 {
+  position: absolute;
+  top: 15vh;
+  left: 10vw;
+  text-align: right;
+}
+#table-33 {
+  position: absolute;
+  top: 2vh;
+  left: 10vw;
+  text-align: right;
+}
+#table-40 {
+  position: absolute;
+  top: 28vh;
+  left: 18vw;
+  text-align: right;
+}
+#table-41 {
+  position: absolute;
+  top: 15vh;
+  left: 18vw;
+  text-align: right;
+}
+#table-42 {
+  position: absolute;
+  top: 2vh;
+  left: 18vw;
+  text-align: right;
+}
+#table-50 {
+  position: absolute;
+  top: 41vh;
+  left: 26vw;
+  text-align: right;
+}
+#table-51 {
+  position: absolute;
+  top: 28vh;
+  left: 26vw;
+  text-align: right;
+}
+#table-52 {
+  position: absolute;
+  top: 15vh;
+  left: 26vw;
+  text-align: right;
+}
+#table-53 {
+  position: absolute;
+  top: 2vh;
+  left: 26vw;
+  text-align: right;
+}
+#table-60 {
+  position: absolute;
+  top: 28vh;
+  left: 40vw;
+  text-align: right;
+}
+#table-61 {
+  position: absolute;
+  top: 15vh;
+  left: 40vw;
+  text-align: right;
+}
+#table-70 {
+  position: absolute;
+  top: 28vh;
+  left: 50vw;
+  text-align: right;
+}
+#table-71 {
+  position: absolute;
+  top: 15vh;
+  left: 50vw;
+  text-align: right;
+}
+#table-80 {
+  position: absolute;
+  top: 41vh;
+  left: 52vw;
+  text-align: right;
+}
+#hostess {
+  position: absolute;
+  top: 2vh;
+  left: 43vw;
+  text-align: right;
+  border: 1px solid rgb(134, 131, 131);
+  padding: 1em 2em;
+}
+#upcoming-parties {
+  position: absolute;
+  top: 54vh;
+  left: 32vw;
+}
+#a {
+  position: absolute;
+  top: 75vh;
+  left: 8.4vw;
+}
+#b {
+  position: absolute;
+  top: 33vh;
+  left: 8.4vw;
+}
+#c {
+  position: absolute;
+  top: 65vh;
+  left: 3.4vw;
+}
+#d {
+  position: absolute;
+  top: 65vh;
+  left: 11.4vw;
+}
+#e {
+  position: absolute;
+  top: 40vh;
+  left: 21.4vw;
+}
+#f {
+  position: absolute;
+  top: 40vh;
+  left: 44.4vw;
 }
 
 .table-num {

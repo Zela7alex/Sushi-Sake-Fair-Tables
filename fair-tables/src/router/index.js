@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import TablesView from '../views/TablesView.vue'
 import PastSections from '../views/PastSections.vue'
+import PartiesCalendar from '../views/PartiesCalendar.vue'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,11 @@ const routes = [
     path: '/past-sections',
     names: 'past-sections',
     component: PastSections,
+  },
+  {
+    path: '/parties-calendar',
+    names: 'parties-calendar',
+    component: PartiesCalendar,
   },
 ]
 

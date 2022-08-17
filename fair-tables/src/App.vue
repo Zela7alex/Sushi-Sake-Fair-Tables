@@ -2,7 +2,8 @@
   <div id="app">
     <nav>
       <router-link to="/">Tables</router-link> |
-      <router-link to="/past-sections">Past Sections</router-link>
+      <router-link to="/past-sections">Past Sections</router-link>|
+      <router-link to="/parties-calendar">Parties Calendar</router-link>
     </nav>
     <router-view />
     <img

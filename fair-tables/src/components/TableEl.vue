@@ -5,6 +5,7 @@
       <div id="info">
         <p id="server-name">Alex</p>
         <p id="time-at-table">1:20:21</p>
+        <i class="fa fa-user" aria-hidden="true">4</i>
       </div>
     </div>
   </div>
@@ -24,6 +25,11 @@ export default {}
   font-size: 10px;
   cursor: pointer;
   position: relative;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+}
+.tables:active {
+  background-color: rgb(56, 54, 54);
 }
 #info {
   position: absolute;
@@ -37,7 +43,7 @@ export default {}
 }
 
 #server-name {
-  margin-top: 23px;
+  margin-top: 18px;
   background-color: rgba(70, 63, 63, 0.481);
   text-align: center;
   border-radius: 2px;
@@ -45,5 +51,12 @@ export default {}
 }
 #time-at-table {
   margin-top: 0;
+}
+.fa-user {
+  font-size: 10px;
+  padding: 0;
+  margin-right: 0;
+  text-align: left;
+  color: rgb(43, 41, 41);
 }
 </style>

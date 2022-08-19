@@ -11,6 +11,12 @@
       <i style="font-size: 14px" class="fa reset" id="spin">&#xf021;</i>
       <p>Reset Shift</p>
     </div>
+    <label id="sections-switch" class="switch">
+      <input type="checkbox" />
+      <span class="slider round"></span>
+      <p>Sections</p>
+    </label>
+
     <!----------------------------------TABLES 20-80------------------------------------------>
     <div id="inside">
       <TableEl id="table-20" class="tables"
@@ -77,6 +83,7 @@
       <SectionLetters id="d">D</SectionLetters>
       <SectionLetters id="e">E</SectionLetters>
       <SectionLetters id="f">F</SectionLetters>
+      <AssignedSectionNamesTable />
       <!--------------------------------Hostess/Parties------------------------------------->
       <div id="hostess">Hostess</div>
       <UpcomingParties id="upcoming-parties" />
@@ -140,8 +147,15 @@ import ServersHeadCount from '@/components/ServersHeadCount.vue'
 import TableEl from '@/components/TableEl.vue'
 import UpcomingParties from '@/components/UpcomingParties.vue'
 import SectionLetters from '@/components/SectionLetters.vue'
+import AssignedSectionNamesTable from '@/components/AssignedSectionNamesTable.vue'
 export default {
-  components: { ServersHeadCount, TableEl, UpcomingParties, SectionLetters },
+  components: {
+    ServersHeadCount,
+    TableEl,
+    UpcomingParties,
+    SectionLetters,
+    AssignedSectionNamesTable,
+  },
 }
 </script>
 
@@ -484,5 +498,70 @@ h4 {
   font-size: 15px;
   padding: 4px;
   color: rgb(250, 242, 242);
+}
+/*----------------------------Section Tables ON-------------------------------------------*/
+#sections-switch {
+  position: absolute;
+  top: 90vh;
+  left: 80vw;
+}
+#sections-switch p {
+  font-size: 11px;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 26px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 18px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+input:checked + .slider {
+  background-color: #c03d20;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #7c1c04;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
 }
 </style>

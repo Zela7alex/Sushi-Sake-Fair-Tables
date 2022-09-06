@@ -1,19 +1,21 @@
 <template>
   <div>
-    <p id="server">
-      Alex: <slot id="num-of-guests">20</slot><TrashServerCount id="trash" />
-    </p>
-    <p id="server">Paola: <slot id="num-of-guests">30</slot></p>
-    <p id="server">Kim: <slot id="num-of-guests">8</slot></p>
-    <p id="server">Juan: <slot id="num-of-guests">12</slot></p>
-    <p id="server">Lore: <slot id="num-of-guests">12</slot></p>
-    <p id="server">Joanna: <slot id="num-of-guests">12</slot></p>
+    <div id="servers-list">
+      <p id="server" v-for="p in people" :key="p.id" :value="p.id">
+        {{ p.name }}: {{ p.guestCount }}
+        <TrashServerCount id="trash" />
+      </p>
+    </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import TrashServerCount from '@/components/TrashServerCount.vue'
 export default {
+  computed: {
+    ...mapGetters(['people']),
+  },
   components: { TrashServerCount },
 }
 </script>
@@ -27,6 +29,12 @@ p {
 }
 #trash {
   display: inline-block;
-  margin-left: 6vw;
+  width: 10%;
+  margin-left: 4vw;
+  cursor: pointer;
+}
+#servers-list {
+  width: 100%;
+  height: 250px;
 }
 </style>

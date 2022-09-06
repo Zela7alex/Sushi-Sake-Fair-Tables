@@ -1,23 +1,73 @@
 <template>
   <div>
-    <div class="tables">
+    <div class="tables" @click="editEl = true">
       <slot></slot>
       <div id="info">
-        <p id="server-name">Alex</p>
-        <p id="time-at-table">1:20:21</p>
-        <i class="fa fa-user" aria-hidden="true">4</i>
+        <p id="server-name">{{ nameSelected }}</p>
+        <p id="time-at-table">{{ timeAtTable }}</p>
+        <i class="fa fa-user" aria-hidden="true">{{ numOfGuests }}</i>
       </div>
     </div>
+    <EditTable
+      id="edit-table"
+      v-if="editEl"
+      @close="editEl = false"
+      @newTable="newTableData"
+      @startTime="timerStart"
+    />
   </div>
 </template>
 
 <script>
-export default {}
+import EditTable from '@/components/EditTable.vue'
+export default {
+  components: {
+    EditTable,
+  },
+  data() {
+    return {
+      editEl: false,
+      nameSelected: '',
+      timeAtTable: '00:00:00',
+      numOfGuests: '',
+    }
+  },
+  methods: {
+    newTableData({ serverSelected, guestCount }) {
+      this.nameSelected = serverSelected
+      this.numOfGuests = guestCount
+    },
+    // Timer start for tables
+    timerStart() {
+      let arr = this.timeAtTable.split(':')
+      let hour = arr[0]
+      let min = arr[1]
+      let sec = arr[2]
+
+      if (sec == 59) {
+        if (min == 59) {
+          hour++
+          min = 0
+          if (hour < 10) hour = '0' + hour
+        } else {
+          min++
+        }
+        if (min < 10) min = '0' + min
+        sec = 0
+      } else {
+        sec++
+        if (sec < 10) sec = 0 + sec
+      }
+      this.timeAtTable = hour + ':' + min + ':' + sec
+      setTimeout(this.timerStart, 1000)
+    },
+  },
+  prop: {},
+}
 </script>
 
-<style>
+<style lang="css" scoped>
 .tables {
-  z-index: 1;
   background: rgb(119, 126, 119);
   width: 5vw;
   height: 10vh;
@@ -51,6 +101,15 @@ export default {}
 }
 #time-at-table {
   margin-top: 0;
+}
+#edit-table {
+  position: absolute;
+  bottom: 6vh;
+  left: 2vw;
+  z-index: 1;
+}
+.displayEditTable {
+  display: inline;
 }
 .fa-user {
   font-size: 10px;

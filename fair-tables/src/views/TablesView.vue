@@ -4,7 +4,12 @@
       <h4>Tues, October 8th 2022</h4>
       <h2>Server Count:</h2>
       <ServersHeadCount />
-      <i class="fa fa-user-plus" aria-hidden="true" id="add-server"></i>
+      <i
+        class="fa fa-user-plus"
+        aria-hidden="true"
+        id="add-server"
+        @click="showAddServerBox"
+      ></i>
       <button id="erase-all">ERASE ALL</button>
     </div>
     <div class="reset-shift">
@@ -12,7 +17,7 @@
       <p>Reset Shift</p>
     </div>
     <label id="sections-switch" class="switch">
-      <input type="checkbox" />
+      <input type="checkbox" v-model="checked" @click="showSections" />
       <span class="slider round"></span>
       <p>Sections</p>
     </label>
@@ -79,11 +84,29 @@
       <TableEl id="table-80" class="tables"
         ><span class="table-num">80</span></TableEl
       >
-      <SectionLetters id="c">C</SectionLetters>
-      <SectionLetters id="d">D</SectionLetters>
-      <SectionLetters id="e">E</SectionLetters>
-      <SectionLetters id="f">F</SectionLetters>
-      <AssignedSectionNamesTable />
+      <SectionLetters
+        :class="{ displaySections: checked, displayNone: unchecked }"
+        id="c"
+        >C</SectionLetters
+      >
+      <SectionLetters
+        :class="{ displaySections: checked, displayNone: unchecked }"
+        id="d"
+        >D</SectionLetters
+      >
+      <SectionLetters
+        :class="{ displaySections: checked, displayNone: unchecked }"
+        id="e"
+        >E</SectionLetters
+      >
+      <SectionLetters
+        :class="{ displaySections: checked, displayNone: unchecked }"
+        id="f"
+        >F</SectionLetters
+      >
+      <AssignedSectionNamesTable
+        :class="{ displaySections: checked, displayNone: unchecked }"
+      />
       <!--------------------------------Hostess/Parties------------------------------------->
       <div id="hostess">Hostess</div>
       <UpcomingParties id="upcoming-parties" />
@@ -137,8 +160,22 @@
     <TableEl id="table-16" class="tables"
       ><span class="table-num">16</span></TableEl
     >
-    <SectionLetters id="a">A</SectionLetters>
-    <SectionLetters id="b">B</SectionLetters>
+    <AddServerEl id="add-server-box" :class="{ displayNone: hideBox }" />
+    <i
+      class="fa-solid fa-circle-xmark"
+      @click="hideAddServerBox"
+      :class="{ displayNone: hideXbutton }"
+    ></i>
+    <SectionLetters
+      :class="{ displaySections: checked, displayNone: unchecked }"
+      id="a"
+      >A</SectionLetters
+    >
+    <SectionLetters
+      :class="{ displaySections: checked, displayNone: unchecked }"
+      id="b"
+      >B</SectionLetters
+    >
   </div>
 </template>
 
@@ -147,6 +184,7 @@ import ServersHeadCount from '@/components/ServersHeadCount.vue'
 import TableEl from '@/components/TableEl.vue'
 import UpcomingParties from '@/components/UpcomingParties.vue'
 import SectionLetters from '@/components/SectionLetters.vue'
+import AddServerEl from '@/components/AddServerEl.vue'
 import AssignedSectionNamesTable from '@/components/AssignedSectionNamesTable.vue'
 export default {
   components: {
@@ -154,12 +192,56 @@ export default {
     TableEl,
     UpcomingParties,
     SectionLetters,
+    AddServerEl,
     AssignedSectionNamesTable,
+  },
+  data() {
+    return {
+      checked: false,
+      unchecked: true,
+      hideBox: true,
+      hideXbutton: true,
+      editEl: false,
+    }
+  },
+
+  methods: {
+    showSections: function () {
+      this.checked = true
+    },
+    showAddServerBox: function () {
+      this.hideBox = false
+      this.hideXbutton = false
+    },
+    hideAddServerBox: function () {
+      this.hideBox = true
+      this.hideXbutton = !this.hideXbutton
+    },
   },
 }
 </script>
 
 <style lang="css" scoped>
+.displayNone {
+  display: none;
+}
+.displaySections {
+  display: inline;
+}
+.fa-circle-xmark {
+  cursor: pointer;
+  color: rgb(134, 125, 125);
+  z-index: 2;
+  position: absolute;
+  top: 72vh;
+  right: 20vw;
+}
+.fa-circle-xmark:hover {
+  color: rgb(156, 15, 15);
+  cursor: pointer;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+}
 .home {
   color: white;
   position: relative;
@@ -192,6 +274,12 @@ h4 {
   margin-top: 3px;
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
+}
+#add-server-box {
+  z-index: 2;
+  position: absolute;
+  top: 70vh;
+  left: 65vw;
 }
 #add-server:active {
   background: rgba(224, 219, 219, 0.3);

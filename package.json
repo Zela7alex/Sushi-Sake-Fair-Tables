@@ -1,0 +1,29 @@
+{
+  "name": "sushi-sake-fair-tables",
+  "version": "1.0.0",
+  "description": "An app for table organization at a sushi restaurant ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon api/server.js",
+    "dev": "nodemon api/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zela7alex/Sushi-Sake-Fair-Tables.git"
+  },
+  "author": "Alex",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zela7alex/Sushi-Sake-Fair-Tables/issues"
+  },
+  "homepage": "https://github.com/Zela7alex/Sushi-Sake-Fair-Tables#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-formidable": "^1.2.0",
+    "mongoose": "^7.0.1",
+    "nodemon": "^2.0.21"
+  }
+}

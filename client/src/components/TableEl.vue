@@ -24,13 +24,14 @@
       @close="editEl = false"
       @newTable="newTableData"
       @startTime="timerStart"
+      @clearTableData="clearTable"
     />
   </div>
 </template>
 
 <script>
 import EditTable from '@/components/EditTable.vue'
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import moment from 'moment'
 export default {
   components: {
@@ -38,6 +39,8 @@ export default {
   },
   computed: {
     ...mapState(['tables']),
+    ...mapActions(['removeTableFromLocal']),
+    ...mapActions(['clearAllTablesFromLocal']),
   },
   data() {
     return {
@@ -46,6 +49,8 @@ export default {
       timeAtTable: '00:00:00',
       numOfGuests: '',
       tableActive: false,
+      timerId: null,
+      clearing: false,
     }
   },
   methods: {
@@ -56,8 +61,33 @@ export default {
       if (occupied === true) {
         this.tableActive = true
       }
-      console.log(occupied)
     },
+    clearTable({ serverSelected, guestCount, occupied, tableId }) {
+      this.nameSelected = serverSelected
+      this.numOfGuests = guestCount
+      if (occupied === false) {
+        this.tableActive = false
+      }
+      this.timeAtTable = '00:00:00'
+      clearInterval(this.timerId)
+      this.timerId = null
+      // Clear table from local storage here
+      this.removeTableFromLocal(tableId)
+    },
+
+    resetTable() {
+      this.clearing = true
+      if (this.clearing === true) {
+        this.nameSelected = ''
+        this.numOfGuests = ''
+        this.tableActive = false
+        this.timeAtTable = '00:00:00'
+        clearInterval(this.timerId)
+        this.timerId = null
+      }
+      this.clearAllTablesFromLocal()
+    },
+
     // Timer start for tables
     timerStart() {
       let arr = this.timeAtTable.split(':')
@@ -85,7 +115,9 @@ export default {
         this.ensureTwoDigits(min) +
         ':' +
         this.ensureTwoDigits(sec)
-      setTimeout(this.timerStart, 1000)
+      if (!this.timerId) {
+        this.timerId = setInterval(this.timerStart, 1000)
+      }
     },
     internalLoad(data) {
       this.nameSelected = data.selectedPerson.name
@@ -99,10 +131,6 @@ export default {
       const seconds = Math.floor(totalSeconds % 60)
       const hours = Math.floor(totalMinutes / 60)
       const minutes = totalMinutes % 60
-
-      console.log(typeof seconds)
-      console.log(typeof hours)
-      console.log(typeof minutes)
 
       this.timeAtTable =
         this.ensureTwoDigits(hours) +
@@ -122,6 +150,7 @@ export default {
   },
   props: {
     tableId: String,
+    resetTheShift: Boolean,
   },
   created() {
     this.tables.forEach((table) => {
@@ -129,7 +158,9 @@ export default {
         this.internalLoad(table)
       }
     })
+    this.$root.$on('reset-all-tables', this.resetTable)
   },
+  mounted() {},
 }
 </script>
 

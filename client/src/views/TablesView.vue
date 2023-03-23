@@ -12,7 +12,7 @@
       ></i>
       <button id="erase-all" @click="handleClearServers()">ERASE ALL</button>
     </div>
-    <div class="reset-shift">
+    <div class="reset-shift" @click="resetShift()">
       <i style="font-size: 14px" class="fa reset" id="spin">&#xf021;</i>
       <p>Reset Shift</p>
     </div>
@@ -24,64 +24,144 @@
 
     <!----------------------------------TABLES 20-80------------------------------------------>
     <div id="inside">
-      <TableEl id="table-20" class="tables"
+      <TableEl
+        id="table-20"
+        :resetTheShift="shiftReset"
+        tableId="table20"
+        class="tables"
         ><span class="table-num">20</span></TableEl
       >
-      <TableEl id="table-21" class="tables"
+      <TableEl
+        id="table-21"
+        :resetTheShift="shiftReset"
+        tableId="table21"
+        class="tables"
         ><span class="table-num">21</span></TableEl
       >
-      <TableEl id="table-22" class="tables"
+      <TableEl
+        id="table-22"
+        :resetTheShift="shiftReset"
+        tableId="table22"
+        class="tables"
         ><span class="table-num">22</span></TableEl
       >
-      <TableEl id="table-23" class="tables"
+      <TableEl
+        id="table-23"
+        :resetTheShift="shiftReset"
+        tableId="table23"
+        class="tables"
         ><span class="table-num">23</span></TableEl
       >
-      <TableEl id="table-30" class="tables"
+      <TableEl
+        id="table-30"
+        :resetTheShift="shiftReset"
+        tableId="table30"
+        class="tables"
         ><span class="table-num">30</span></TableEl
       >
-      <TableEl id="table-31" class="tables"
+      <TableEl
+        id="table-31"
+        :resetTheShift="shiftReset"
+        tableId="table31"
+        class="tables"
         ><span class="table-num">31</span></TableEl
       >
-      <TableEl id="table-32" class="tables"
+      <TableEl
+        id="table-32"
+        :resetTheShift="shiftReset"
+        tableId="table32"
+        class="tables"
         ><span class="table-num">32</span></TableEl
       >
-      <TableEl id="table-33" class="tables"
+      <TableEl
+        id="table-33"
+        :resetTheShift="shiftReset"
+        tableId="table33"
+        class="tables"
         ><span class="table-num">33</span></TableEl
       >
-      <TableEl id="table-40" class="tables"
+      <TableEl
+        id="table-40"
+        :resetTheShift="shiftReset"
+        tableId="table40"
+        class="tables"
         ><span class="table-num">40</span></TableEl
       >
-      <TableEl id="table-41" class="tables"
+      <TableEl
+        id="table-41"
+        :resetTheShift="shiftReset"
+        tableId="table41"
+        class="tables"
         ><span class="table-num">41</span></TableEl
       >
-      <TableEl id="table-42" class="tables"
+      <TableEl
+        id="table-42"
+        :resetTheShift="shiftReset"
+        tableId="table42"
+        class="tables"
         ><span class="table-num">42</span></TableEl
       >
-      <TableEl id="table-50" class="tables"
+      <TableEl
+        id="table-50"
+        :resetTheShift="shiftReset"
+        tableId="table50"
+        class="tables"
         ><span class="table-num">50</span></TableEl
       >
-      <TableEl id="table-51" class="tables"
+      <TableEl
+        id="table-51"
+        :resetTheShift="shiftReset"
+        tableId="table51"
+        class="tables"
         ><span class="table-num">51</span></TableEl
       >
-      <TableEl id="table-52" class="tables"
+      <TableEl
+        id="table-52"
+        :resetTheShift="shiftReset"
+        tableId="table52"
+        class="tables"
         ><span class="table-num">52</span></TableEl
       >
-      <TableEl id="table-53" class="tables"
+      <TableEl
+        id="table-53"
+        :resetTheShift="shiftReset"
+        tableId="table53"
+        class="tables"
         ><span class="table-num">53</span></TableEl
       >
-      <TableEl id="table-60" class="tables"
+      <TableEl
+        id="table-60"
+        :resetTheShift="shiftReset"
+        tableId="table60"
+        class="tables"
         ><span class="table-num">60</span></TableEl
       >
-      <TableEl id="table-61" class="tables"
+      <TableEl
+        id="table-61"
+        :resetTheShift="shiftReset"
+        tableId="table61"
+        class="tables"
         ><span class="table-num">61</span></TableEl
       >
-      <TableEl id="table-70" class="tables"
+      <TableEl
+        id="table-70"
+        :resetTheShift="shiftReset"
+        tableId="table70"
+        class="tables"
         ><span class="table-num">70</span></TableEl
       >
-      <TableEl id="table-71" class="tables"
+      <TableEl
+        id="table-71"
+        :resetTheShift="shiftReset"
+        tableId="table71"
+        class="tables"
         ><span class="table-num">71</span></TableEl
       >
-      <TableEl id="table-80" class="tables"
+      <TableEl
+        id="table-80"
+        :resetTheShift="shiftReset"
+        tableId="table80"
+        class="tables"
         ><span class="table-num">80</span></TableEl
       >
       <SectionLetters
@@ -113,52 +193,100 @@
       <UpcomingParties id="upcoming-parties" />
     </div>
     <!----------------------------------TABLES 1-16------------------------------------------->
-    <TableEl id="table-1" tableId="table1" class="tables"
+    <TableEl
+      id="table-1"
+      :resetTheShift="shiftReset"
+      tableId="table1"
+      class="tables"
       ><span class="table-num">1</span></TableEl
     >
-    <TableEl id="table-2" tableId="table2" class="tables"
+    <TableEl
+      id="table-2"
+      :resetTheShift="shiftReset"
+      tableId="table2"
+      class="tables"
       ><span class="table-num">2</span></TableEl
     >
-    <TableEl id="table-3" tableId="table3" class="tables"
+    <TableEl
+      id="table-3"
+      :resetTheShift="shiftReset"
+      tableId="table3"
+      class="tables"
       ><span class="table-num">3</span></TableEl
     >
-    <TableEl id="table-4" tableId="table4" class="tables"
+    <TableEl
+      id="table-4"
+      :resetTheShift="shiftReset"
+      tableId="table4"
+      class="tables"
       ><span class="table-num">4</span></TableEl
     >
-    <TableEl id="table-5" tableId="table5" class="tables"
+    <TableEl
+      id="table-5"
+      :resetTheShift="shiftReset"
+      tableId="table5"
+      class="tables"
       ><span class="table-num">5</span></TableEl
     >
-    <TableEl id="table-6" tableId="table6" class="tables"
+    <TableEl
+      id="table-6"
+      :resetTheShift="shiftReset"
+      tableId="table6"
+      class="tables"
       ><span class="table-num">6</span></TableEl
     >
-    <TableEl id="table-7" tableId="table7" class="tables"
+    <TableEl
+      id="table-7"
+      :resetTheShift="shiftReset"
+      tableId="table7"
+      class="tables"
       ><span class="table-num">7</span></TableEl
     >
-    <TableEl id="table-8" tableId="table8" class="tables"
+    <TableEl
+      id="table-8"
+      :resetTheShift="shiftReset"
+      tableId="table8"
+      class="tables"
       ><span class="table-num">8</span></TableEl
     >
-    <TableEl id="table-9" tableId="table9" class="tables"
+    <TableEl
+      id="table-9"
+      :resetTheShift="shiftReset"
+      tableId="table9"
+      class="tables"
       ><span class="table-num">9</span></TableEl
     >
-    <TableEl id="table-10" tableId="table10" class="tables"
+    <TableEl
+      id="table-10"
+      :resetTheShift="shiftReset"
+      tableId="table10"
+      class="tables"
       ><span class="table-num">10</span></TableEl
     >
-    <TableEl id="table-11" class="tables"
+    <TableEl
+      id="table-11"
+      :resetTheShift="shiftReset"
+      tableId="table11"
+      class="tables"
       ><span class="table-num">11</span></TableEl
     >
-    <TableEl id="table-12" class="tables"
+    <TableEl
+      id="table-12"
+      :resetTheShift="shiftReset"
+      tableId="table12"
+      class="tables"
       ><span class="table-num">12</span></TableEl
     >
-    <TableEl id="table-13" class="tables"
+    <TableEl id="table-13" tableId="table13" class="tables"
       ><span class="table-num">13</span></TableEl
     >
-    <TableEl id="table-14" class="tables"
+    <TableEl id="table-14" tableId="table14" class="tables"
       ><span class="table-num">14</span></TableEl
     >
-    <TableEl id="table-15" class="tables"
+    <TableEl id="table-15" tableId="table15" class="tables"
       ><span class="table-num">15</span></TableEl
     >
-    <TableEl id="table-16" class="tables"
+    <TableEl id="table-16" tableId="table16" class="tables"
       ><span class="table-num">16</span></TableEl
     >
     <AddServerEl id="add-server-box" :class="{ displayNone: hideBox }" />
@@ -206,6 +334,7 @@ export default {
       hideXbutton: true,
       editEl: false,
       date: moment().format('MMM Do YY'),
+      shiftReset: false,
     }
   },
 
@@ -226,6 +355,10 @@ export default {
     }),
     handleClearServers() {
       this.clearServers()
+    },
+    resetShift() {
+      this.shiftReset = true
+      this.$root.$emit('reset-all-tables')
     },
   },
 }

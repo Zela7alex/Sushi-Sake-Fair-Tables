@@ -14,12 +14,9 @@ router.get('/', (req, res) => {
   })
 
   router.delete('/', (req, res) => {
-    Party.findByIdAndDelete(req.params.id)
+    Party.findByIdAndDelete(req.query.partyId)
       .then((parties) => {
-        if(!parties) {
-          return res.status(404).send()
-        }
-        res.send(party)
+        res.send(parties)
       }).catch((error) => {
         res.status(500).send(error)
       })

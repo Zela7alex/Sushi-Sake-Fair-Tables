@@ -26,7 +26,7 @@
         <i
           class="fa-solid fa-circle-xmark displayNone"
           :class="{ display: isEditing }"
-          @click="deleteParty(p._id)"
+          @click="handleRemoveParty(p._id)"
         ></i>
       </div>
     </zoom-center-transition>
@@ -34,6 +34,10 @@
 </template>
 <script>
 import { mapState, mapMutations, mapActions } from 'vuex'
+import axios from 'axios'
+
+const baseUrl = 'http://localhost:3000'
+const partiesUrl = `${baseUrl}/parties`
 
 export default {
   computed: {
@@ -60,11 +64,15 @@ export default {
       this.isEditing = false
     },
     handleRemoveParty(partyById) {
+      // Localstorage
       this.removeParty(partyById)
+      // Mongodb
+      this.removePartyFromDb(partyById)
     },
-    deleteParty(partyById) {
-      this.deletePartyAction(partyById)
+    async removePartyFromDb(partyId) {
+      await axios.delete(`${partiesUrl}?partyId=${partyId}`)
     },
+
     datePassed() {
       let filterPartyDate = this.parties
       let htmlRows = document.querySelectorAll('.party-info-row')

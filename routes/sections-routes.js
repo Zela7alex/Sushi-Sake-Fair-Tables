@@ -47,5 +47,14 @@ router.post('/', async (req, res) => {
         })
 })
 
+router.delete('/', (req, res) => {
+  Section.findByIdAndDelete(req.query.sectionId)
+    .then((sections) => {
+      res.send(sections)
+    }).catch((error) => {
+      res.status(500).send(error)
+    })
+})
+
 
 module.exports = router

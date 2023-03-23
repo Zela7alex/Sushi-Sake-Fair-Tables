@@ -4,6 +4,7 @@
       <p @click="$emit('close')" id="close-el">x</p>
       <p>Select Server :</p>
       <p id="server">{{ nameSelected }}</p>
+      <button id="clear-table" @click="clearTable()">clear</button>
       <NamesDropDown @change="getName" v-model="nameObject" id="drop-down" />
       <p id="guest-count">Guest Count ?</p>
       <input type="text" v-model="numOfGuests" />
@@ -71,6 +72,14 @@ export default {
         numOfGuests: this.numOfGuests,
       }
       this.addGuestCount(serverData)
+    },
+    clearTable() {
+      this.$emit('clearTableData', {
+        serverSelected: '',
+        guestCount: '',
+        occupied: false,
+        tableId: this.tableId,
+      })
     },
   },
 }
@@ -145,6 +154,24 @@ input:focus {
   cursor: pointer;
   border: none;
   border-radius: 2px;
+}
+
+#clear-table {
+  width: 30%;
+  height: 20%;
+  background: rgb(137, 37, 37);
+  box-shadow: inset 0 0 4px #f02913;
+  color: white;
+  position: absolute;
+  top: 1.8vh;
+  left: 9vw;
+  cursor: pointer;
+  border: none;
+  border-radius: 2px;
+}
+
+#clear-table:hover {
+  border: 0.6px solid rgb(236, 10, 10);
 }
 #ok-btn:hover {
   background: grey;

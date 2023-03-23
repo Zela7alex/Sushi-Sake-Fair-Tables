@@ -15,7 +15,7 @@
         <div>
           <p class="center">{{ s.date }}</p>
         </div>
-        <div class="date" :class="{ saturdayColor: isSaturday }">
+        <div class="date">
           <p class="center">{{ s.day }}</p>
         </div>
         <div>
@@ -49,6 +49,10 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex'
+import axios from 'axios'
+
+const baseUrl = 'http://localhost:3000'
+const sectionsUrl = `${baseUrl}/sections`
 
 export default {
   computed: {
@@ -75,6 +79,11 @@ export default {
     },
     handleRemoveSection(sectionById) {
       this.removeSection(sectionById)
+      // Mongodb
+      this.removeSectionFromDb(sectionById)
+    },
+    async removeSectionFromDb(sectionId) {
+      await axios.delete(`${sectionsUrl}?sectionId=${sectionId}`)
     },
   },
 
@@ -105,11 +114,9 @@ export default {
       },
     },
   },
-  created(s) {
+  created() {
     this.$root.$on('start-editing-sections', this.internalStartEditing)
     this.$root.$on('stop-editing-sections', this.internalStopEditing)
-
-    if (s.day == 'Saturday') this.isSaturday = true
   },
 }
 </script>

@@ -63,7 +63,7 @@ p {
   margin: 0 auto;
 }
 th {
-  width: 16%;
+  width: 19%;
   border: 0.5px solid white;
 }
 tr {
@@ -79,6 +79,6 @@ tr {
 .parties {
   margin: 0 auto;
   text-align: center;
-  width: 20rem;
+  width: 22rem;
 }
 </style>

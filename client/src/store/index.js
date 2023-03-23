@@ -3,9 +3,9 @@ import Vuex from 'vuex'
 import Axios from 'axios'
 
 Vue.use(Vuex)
-const baseUrl = 'http://localhost:3000'
-const partiesUrl = `${baseUrl}/parties`
-const sectionsUrl = `${baseUrl}/sections`
+// const baseUrl = 'http://localhost:3000'
+const partiesUrl = `/parties`
+const sectionsUrl = `/sections`
 
 export default new Vuex.Store({
   state: {
@@ -86,9 +86,6 @@ export default new Vuex.Store({
     setTableData(state, data) {
       state.tables = data
     },
-    deleteParty(state, partyEntry) {
-      state.parties = partyEntry
-    },
   },
   actions: {
     // parties actions
@@ -111,9 +108,6 @@ export default new Vuex.Store({
     //^ Action to retrieve only "all parties"
     async setAllPartiesAction(context) {
       context.commit('setAllParties', (await Axios.get(partiesUrl)).data)
-    },
-    async deletePartyAction(context, partyById) {
-      context.commit('deleteParty', await Axios.delete(partiesUrl, partyById))
     },
     // sections actions
     async createNewSections(context, sectionsEntry) {
@@ -138,6 +132,24 @@ export default new Vuex.Store({
       const data = localStorage.getItem('table')
       if (data != null) {
         context.commit('setTableData', JSON.parse(data))
+      }
+    },
+    removeTableFromLocal(context, tableIdToRemove) {
+      const currentTables = JSON.parse(localStorage.getItem('table'))
+
+      const newTables = currentTables.filter((table) => {
+        return table.tableId !== tableIdToRemove.$attrs.id.replace('-', '')
+      })
+
+      localStorage.setItem('table', JSON.stringify(newTables))
+
+      context.commit('setTableData', JSON.parse(newTables))
+    },
+
+    clearAllTablesFromLocal(context) {
+      const data = localStorage.getItem('table')
+      if (data != null) {
+        context.commit('setTableData', [])
       }
     },
 

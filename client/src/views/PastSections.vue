@@ -46,61 +46,51 @@
         <div class="form-group row">
           <div class="col-sm-8">
             <p>A</p>
-            <AssignServerDropdown
-              v-model="sectionA"
-              @change="getName"
-              class="namesDropDown"
-            />
+            <select v-model="sectionA" class="namesDropDown">
+              <option v-for="(p, i) in people" :key="i">{{ p.name }}</option>
+            </select>
           </div>
         </div>
         <div class="form-group row">
           <div class="col-sm-8">
             <p>B</p>
-            <AssignServerDropdown
-              v-model="sectionB"
-              @change="getName"
-              class="namesDropDown"
-            />
+            <select v-model="sectionB" class="namesDropDown">
+              <option v-for="(p, i) in people" :key="i">{{ p.name }}</option>
+            </select>
           </div>
         </div>
         <div class="form-group row">
           <div class="col-sm-8">
             <p>C</p>
-            <AssignServerDropdown
-              v-model="sectionC"
-              @change="getName"
-              class="namesDropDown"
-            />
+            <select v-model="sectionC" class="namesDropDown">
+              <option v-for="(p, i) in people" :key="i">{{ p.name }}</option>
+            </select>
           </div>
         </div>
         <div class="form-group row">
           <div class="col-sm-8">
             <p>D</p>
-            <AssignServerDropdown
-              v-model="sectionD"
-              @change="getName"
-              class="namesDropDown"
-            />
+            <select v-model="sectionD" class="namesDropDown">
+              <option v-for="(p, i) in people" :key="i">{{ p.name }}</option>
+            </select>
           </div>
         </div>
         <div class="form-group row">
           <div class="col-sm-8">
             <p>E</p>
-            <AssignServerDropdown
-              v-model="sectionE"
-              @change="getName"
-              class="namesDropDown"
-            />
+            <select v-model="sectionE" class="namesDropDown">
+              <option v-for="(p, i) in people" :key="i">
+                {{ p.name }}
+              </option>
+            </select>
           </div>
         </div>
         <div class="form-group row">
           <div class="col-sm-8">
             <p>F</p>
-            <AssignServerDropdown
-              v-model="sectionF"
-              @change="getName"
-              class="namesDropDown"
-            />
+            <select v-model="sectionF" class="namesDropDown">
+              <option v-for="(p, i) in people" :key="i">{{ p.name }}</option>
+            </select>
           </div>
         </div>
 
@@ -124,14 +114,12 @@
 import { mapActions } from 'vuex'
 import { mapState } from 'vuex'
 import SectionsEl from '@/components/SectionsEl.vue'
-import AssignServerDropdown from '@/components/AssignServerDropdown.vue'
 export default {
   computed: {
-    ...mapState(['sections']),
+    ...mapState(['sections', 'people']),
   },
   components: {
     SectionsEl,
-    AssignServerDropdown,
   },
   data() {
     return {
@@ -164,13 +152,40 @@ export default {
       }
     },
     getName(event) {
+      this.changeA(event)
+      this.changeB(event)
+      this.changeC(event)
+      this.changeD(event)
+      this.changeE(event)
+      this.changeF(event)
+      // this.sectionA = event.name
+      // this.sectionB = event.name
+      // this.sectionC = event.name
+      // this.sectionD = event.name
+      // this.sectionE = event.name
+      // this.sectionF = event.name
+
+      console.log(event)
+    },
+    changeA(event) {
       this.sectionA = event.name
+    },
+    changeB(event) {
       this.sectionB = event.name
+    },
+    changeC(event) {
       this.sectionC = event.name
+    },
+    changeD(event) {
       this.sectionD = event.name
+    },
+    changeE(event) {
       this.sectionE = event.name
+    },
+    changeF(event) {
       this.sectionF = event.name
     },
+
     ...mapActions(['createNewSections']),
     async createNewSectionsStart() {
       const sectionsEntry = {
@@ -257,7 +272,7 @@ form {
   box-shadow: 1px 2px 6px 2px rgb(83, 84, 84);
 }
 form input {
-  background: rgba(229, 224, 224, 0.9);
+  background: rgb(249, 246, 246);
 }
 
 form button {
@@ -265,7 +280,7 @@ form button {
   margin-left: 50%;
   margin-top: 8%;
   color: white;
-  background-color: rgb(116, 106, 106);
+  background-color: rgb(49, 47, 47);
 }
 form button:hover {
   background-color: white;
@@ -294,28 +309,31 @@ form button:hover {
 .col-sm-8 p {
   color: red;
 }
-.namesDropDown {
-  width: 80%;
-  margin-left: 14%;
-}
 select {
   cursor: pointer;
-  color: rgb(215, 214, 214);
+  color: rgb(247, 242, 242);
   border-radius: 5px;
-  background: rgba(225, 220, 220, 0.8);
+  background: rgb(134, 132, 132);
   width: 115%;
 }
 select:focus {
   outline: none;
   box-shadow: 0px 0px 0px 2px rgb(247, 243, 231) inset;
 }
-select,
-option {
+select option {
   border: 0.2px solid white;
   color: rgb(246, 244, 242);
 }
 .sections {
   position: absolute;
   top: 20%;
+}
+
+.namesDropDown,
+option {
+  width: 90%;
+  height: 60%;
+  margin-left: 14%;
+  background-color: rgb(60, 58, 58);
 }
 </style>
